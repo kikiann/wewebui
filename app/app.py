@@ -2,13 +2,15 @@ from flask import Flask
 import os
 
 app = Flask (__name__)
+app.debug = True
+
 @app.route('/skills')
 def skills():
     #read the skills list from file
     fileName = 'static/skills.csv'
     skillsList = readFile(fileName)
     bookings()
-    return render_template('skills.html',skillsList=skillsList)
+    return render_template('skills.html', skillsList=skillsList)
 
 def get_last_row(csv_filename):
     with open(diff_file.csv, 'r') as f:
