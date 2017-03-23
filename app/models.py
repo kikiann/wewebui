@@ -1,9 +1,19 @@
-from app import db
+from app import admin_engine, engine, admin_metadata, metadata
+from sqlalchemy import Table, Column, BigInteger, String
+from sqlalchemy.orm import mapper, sessionmaker
 
-class Changes(db.Model):
-    timestamp = db.Column(db.BigInteger, primary_key=True)
-    filepath = db.Column(db.String(256))
+class Changes():
+    pass
 
-    def __init__(self, timestamp, filepath):
-        self.timestamp = timestamp
-        self.filepath = filepath
+class master_table(object):
+    pass
+
+# get all table names in project_db from information_schema.tables
+def loadSession():
+    information_schema = Table('tables', admin_metadata,
+                                Column("table_catalog", String, primary_key=True),
+                                autoload=True)
+    mapper(master_table, information_schema)
+    Session = sessionmaker(bind=admin_engine)
+    session = Session()
+    return session
