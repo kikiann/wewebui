@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CSV Parser</title>
+<script src="diff_file.csv" type="text/javascript">
+
+</script>
+
+</head>
+
+<body>
+<div id='table-container'></div>
+
+ 
+<script>
+  CsvToHtmlTable.init({
+    csv_path: 'C:\Users\Anushreya\Anaconda3\Lib\site-packages\flask\Flask-Demo\diff_file.csv',
+    element: 'table-container', 
+    allow_download: true,
+    csv_options: {separator: ';', delimiter: '"'},
+    datatables_options: {"paging": false}
+  });
+</script>
+
+
+</body>
+
+</html>

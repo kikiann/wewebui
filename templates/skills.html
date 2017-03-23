@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+<table>     
+    {% for skill in skillsList %}
+    <tr>
+        <td>
+            {{skill [0]}}
+        </td>
+        <td>
+            {{skill [1]}}
+        </td>
+        <td>
+            {{skill [2]}}
+        </td>
+        <td>
+            <form>
+                {% if check == True %}
+                <input type="checkbox" name="booking" value="on" checked>
+                {% else %}
+                <input type="checkbox" name="booking" value="off">
+                {% endif %}
+            </form>
+        </td>       
+    </tr>
+    {% endfor %}
+</table>
+</head>
+
+<body>
+
+
+</body>
+
+</html>
