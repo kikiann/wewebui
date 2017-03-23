@@ -17,3 +17,5 @@ def loadSession():
     Session = sessionmaker(bind=admin_engine)
     session = Session()
     return session
+
+session = loadSession()

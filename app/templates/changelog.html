@@ -1,9 +1,10 @@
 <div class="changes">
     <h1>All tables</h1>
     <ul>
-    {% for table in all_tables %}
+      {% for table in all_tables %}
         <li>{{ table }}</li>
-    {% endfor %}
+      {% endfor %}
+    </ul>
     <table border="1" cellpadding="5" cellspacing="5">
         {% for row in changes %}
             <tr>
