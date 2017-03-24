@@ -1,5 +1,4 @@
 ## How to run ?
-----------
 
 * Have Python 2 installed
 * Have MySQL / MariaDB installed (comes bundled with XAMPP stack)
@@ -9,6 +8,5 @@
 `python run.py`
 
 ## Nutritional Info ?
----------
 
 Built with Python, Flask, MySQL, SQLAlchemy...
