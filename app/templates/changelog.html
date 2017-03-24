@@ -1,10 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
 <div class="changes">
-    <h1>All tables</h1>
-    <ul>
+  <ul style="list-style: none;">
+      [Database]: {{ database }} <br/>
       {% for table in all_tables %}
-        <li>{{ table }}</li>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- 8 tab spaces. Worst way to implement tab spaces.-->
+        &#8618; [Table]: {{ table }}
       {% endfor %}
-    </ul>
+  </ul>
     <table border="1" cellpadding="5" cellspacing="5">
         {% for row in changes %}
             <tr>
@@ -18,3 +22,5 @@
         {% endfor %}
     </table>
 </div>
+
+{% endblock %}

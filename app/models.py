@@ -1,21 +1,22 @@
-from app import admin_engine, engine, admin_metadata, metadata
+from app import engine, metadata, admin_engine, admin_metadata, Base
 from sqlalchemy import Table, Column, BigInteger, String
-from sqlalchemy.orm import mapper, sessionmaker
+from sqlalchemy.orm import mapper, create_session
 
 class Changes():
     pass
 
-class master_table(object):
-    pass
+class Tables(Base):
+    __table__ = Table('tables', Base.metadata,
+                        Column("table_catalog", String, primary_key=True),
+                        Column("table_schema", String),
+                        Column("table_name", String),
+                        autoload=True, autoload_with=admin_engine)
 
-# get all table names in project_db from information_schema.tables
+    def __repr__(self):
+        return self.table_name
+
 def loadSession():
-    information_schema = Table('tables', admin_metadata,
-                                Column("table_catalog", String, primary_key=True),
-                                autoload=True)
-    mapper(master_table, information_schema)
-    Session = sessionmaker(bind=admin_engine)
-    session = Session()
+    session = create_session(bind=admin_engine)
     return session
 
 session = loadSession()
