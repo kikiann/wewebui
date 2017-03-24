@@ -2,8 +2,8 @@ from app import engine, metadata, admin_engine, admin_metadata, Base
 from sqlalchemy import Table, Column, BigInteger, String
 from sqlalchemy.orm import mapper, create_session
 
-class Changes():
-    pass
+#class Changes(Base):
+#    pass #__table__ = Table('')
 
 class Tables(Base):
     __table__ = Table('tables', Base.metadata,
@@ -16,7 +16,8 @@ class Tables(Base):
         return self.table_name
 
 def loadSession():
-    session = create_session(bind=admin_engine)
-    return session
+    session_0 = create_session(bind=admin_engine)
+    session_1 = create_session(bind=engine)
+    return session_0, session_1
 
-session = loadSession()
+admin_session, session = loadSession()
