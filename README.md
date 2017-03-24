@@ -1,3 +1,5 @@
+[![GitHub version](https://badge.fury.io/gh/kikiann%2Fwewebui.png)](https://badge.fury.io/gh/kikiann%2Fwewebui)
+----------
 ## How to run ?
 
 * Have Python 2 installed
