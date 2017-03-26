@@ -1,26 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div class="changes">
-  <ul style="list-style: none;">
-      [Database]: <a href="{{ url_for('changelog', db=database) }}">{{ database }}</a> <br/>
+<div>
+  <ul>
+      [Database]: <a href="{{ url_for('db_selector', db=database) }}">{{ database }}</a>
       {% for table in all_tables %}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- 8 tab spaces. Worst way to implement tab spaces.-->
-        <strong>&#8618;</strong> [Table]: {{ table }}
+          <li><div>
+            <strong>&#8618;</strong> [Table]: {{ table }}
+          </div></li>
       {% endfor %}
   </ul>
-    <table border="1" cellpadding="5" cellspacing="5">
-        {% for row in changes %}
-            <tr>
-                <td>
-                    <input type="checkbox" name="isChecked" value=True>
-                </td>
-                {% for data in row %}
-                    <td>{{ data }}</td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
 </div>
 
 {% endblock %}

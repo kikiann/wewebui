@@ -1,3 +1,47 @@
+ul {
+  list-style: none;
+}
+li {
+  list-style: none;
+  border-left: 2px solid #000;
+  /*margin-left: 1em;*/
+}
+li div {
+  padding-left: 1em;
+  position: relative;
+}
+li div::before {
+  /*content:'';*/
+  position: absolute;
+  /*top: 0;*/
+  left: -2px;
+  bottom: 50%;
+  /*width: 0.75em;*/
+  border: 2px solid #000;
+  border-top: 0 none transparent;
+  border-right: 0 none transparent;
+}
+ul > li:last-child {
+  border-left: 2px solid transparent;
+}
+
+ul > a {
+  text-decoration: none;
+}
+
+ul > a:hover {
+  text-decoration: none;
+  color: red;
+}
+
+li > a {
+  text-decoration: none;
+}
+li > a:hover {
+  text-decoration: none;
+  color: red;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -14,6 +58,12 @@ header {
   opacity: .9;
   margin-bottom: 10px;
 }
+
+header > a, a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 header h1.logo {
   margin: 0;
   font-size: 1.7em;

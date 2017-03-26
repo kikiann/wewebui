@@ -10,6 +10,10 @@ def home():
     return render_template('changelog.html', database = working_db)
 
 @app.route('/<db>')
-def changelog(db):
+def db_selector(db):
     all_tables = admin_session.query(Tables).filter(Tables.table_schema == db)
-    return render_template('changelog.html', all_tables=all_tables, database = db)
+    return render_template('changelog.html', all_tables=all_tables, database=db)
+
+@app.route('/<db>/<tbl>')
+def tbl_selector(db, tbl):
+    all_entries = session.query()

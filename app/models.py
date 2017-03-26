@@ -2,9 +2,11 @@ from app import engine, metadata, admin_engine, admin_metadata, Base
 from sqlalchemy import Table, Column, BigInteger, String
 from sqlalchemy.orm import mapper, create_session
 
-#class Changes(Base):
-#    pass #__table__ = Table('')
-
+'''
+class Changes(Base):
+    from app.views import all_tables
+    __table__ = Table('')
+'''
 class Tables(Base):
     __table__ = Table('tables', Base.metadata,
                         Column("table_catalog", String, primary_key=True),
