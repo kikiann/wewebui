@@ -8,12 +8,14 @@
           <li>
             <ul>
               <strong>&#8618;</strong> [Table]:
-                <a href="{{ url_for('db_selector', db=database, tbl=table) }}">
-                  {{ table }}
+                <a href="{{ url_for('tbl_selector', db=database, tbl=table.table_name) }}">
+                  {{ table.table_name }}
                 </a>
                 {% for entry in all_entries %}
                   <li><div>
-                    <strong>&#8618;</strong> [{{ entry[0] }}]
+                    <strong>&#8618;</strong>
+                    <input type="checkbox" value="" />
+                    [{{ entry.timestamp | get_time }}]: {{ entry.filepath }}
                   </div><li>
                 {% endfor %}
             </ul>
