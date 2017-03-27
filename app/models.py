@@ -1,25 +1,13 @@
-from app import engine, metadata, admin_engine, admin_metadata, Base
-from sqlalchemy import Table, Column, BigInteger, String
-from sqlalchemy.orm import mapper, create_session
+from app import metadata, admin_metadata, conn, admin_conn
+from sqlalchemy import Table, Column, String, select
 
-'''
-class Changes(Base):
-    from app.views import all_tables
-    __table__ = Table('')
-'''
-class Tables(Base):
-    __table__ = Table('tables', Base.metadata,
-                        Column("table_catalog", String, primary_key=True),
-                        Column("table_schema", String),
-                        Column("table_name", String),
-                        autoload=True, autoload_with=admin_engine)
+def get_tables(db):
+    tbl_name = admin_metadata.tables['TABLES']
+    dump(admin_metadata)
+    query = tbl_name.select(tbl_name.c.table_name).where(table.c.table_schema == db)
+    return admin_conn.execute(query)
 
-    def __repr__(self):
-        return self.table_name
-
-def loadSession():
-    session_0 = create_session(bind=admin_engine)
-    session_1 = create_session(bind=engine)
-    return session_0, session_1
-
-admin_session, session = loadSession()
+def get_entries(table):
+    tbl_name = metadata.tables[table]
+    query = tbl_name.select(tbl_name)
+    return conn.execute(query)

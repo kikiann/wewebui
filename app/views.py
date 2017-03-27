@@ -1,9 +1,12 @@
 from flask import render_template, request,flash, redirect, url_for
 from app import app, working_db
-from app.models import Tables, admin_session, session
+from app.models import get_tables, get_entries
 import better_exceptions
+import sys
 
-global all_tables
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404
 
 @app.route('/')
 def home():
@@ -11,9 +14,14 @@ def home():
 
 @app.route('/<db>')
 def db_selector(db):
-    all_tables = admin_session.query(Tables).filter(Tables.table_schema == db)
+    all_tables = get_tables(db)
     return render_template('changelog.html', all_tables=all_tables, database=db)
 
-@app.route('/<db>/<tbl>')
-def tbl_selector(db, tbl):
-    all_entries = session.query()
+@app.route('/<db>/table')
+def tbl_selector():
+    _tbl = request.args.get('tbl')
+    if not _tbl == None:
+        all_entries = get_entries(_tbl)
+        return render_template('changelog.html', all_entries=all_entries)
+    else:
+        return page_not_found()

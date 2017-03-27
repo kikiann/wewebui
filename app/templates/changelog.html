@@ -5,9 +5,19 @@
   <ul>
       [Database]: <a href="{{ url_for('db_selector', db=database) }}">{{ database }}</a>
       {% for table in all_tables %}
-          <li><div>
-            <strong>&#8618;</strong> [Table]: {{ table }}
-          </div></li>
+          <li>
+            <ul>
+              <strong>&#8618;</strong> [Table]:
+                <a href="{{ url_for('db_selector', db=database, tbl=table) }}">
+                  {{ table }}
+                </a>
+                {% for entry in all_entries %}
+                  <li><div>
+                    <strong>&#8618;</strong> [{{ entry[0] }}]
+                  </div><li>
+                {% endfor %}
+            </ul>
+          </li>
       {% endfor %}
   </ul>
 </div>

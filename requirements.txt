@@ -2,3 +2,4 @@ Flask==0.12
 Flask_SQLAlchemy==2.2
 SQLAlchemy==1.1.6
 better_exceptions==0.1.5
+flask_debugtoolbar==0.10.1
