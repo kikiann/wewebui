@@ -1,19 +1,27 @@
-<div class="changes">
-    <h1>All tables</h1>
-    <ul>
-    {% for table in all_tables %}
-        <li>{{ table }}</li>
-    {% endfor %}
-    <table border="1" cellpadding="5" cellspacing="5">
-        {% for row in changes %}
-            <tr>
-                <td>
-                    <input type="checkbox" name="isChecked" value=True>
-                </td>
-                {% for data in row %}
-                    <td>{{ data }}</td>
+{% extends "layout.html" %}
+{% block body %}
+
+<div>
+  <ul>
+      [Database]: <a href="{{ url_for('db_selector', db=database) }}">{{ database }}</a>
+      {% for table in all_tables %}
+          <li>
+            <ul>
+              <strong>&#8618;</strong> [Table]:
+                <a href="{{ url_for('tbl_selector', db=database, tbl=table.table_name) }}">
+                  {{ table.table_name }}
+                </a>
+                {% for entry in all_entries %}
+                  <li><div>
+                    <strong>&#8618;</strong>
+                    <input type="checkbox" value="" />
+                    [{{ entry.timestamp | get_time }}]: {{ entry.filepath }}
+                  </div><li>
                 {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
+            </ul>
+          </li>
+      {% endfor %}
+  </ul>
 </div>
+
+{% endblock %}

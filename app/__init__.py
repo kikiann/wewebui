@@ -1,18 +1,32 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, MetaData
+from sqlalchemy.ext.declarative import declarative_base
+from flask_debugtoolbar import DebugToolbarExtension
+import better_exceptions
+import logging
+
+logging.basicConfig()
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-#db = SQLAlchemy(app)
+from app.util.filters import blueprint
+app.register_blueprint(blueprint)
+
+toolbar = DebugToolbarExtension(app)
 
 dbPath = 'mysql+pymysql://root@localhost/'
+admin_db = 'information_schema'
+working_db = 'project_db'
 
-admin_engine = create_engine(dbPath + 'information_schema', echo=True)
+Base = declarative_base()
+
+admin_engine = create_engine(dbPath + admin_db, echo=True)
 admin_metadata = MetaData(admin_engine)
 
-engine = create_engine(dbPath + 'project_db', echo=True)
-metadata = MetaData(engine)
+engine = create_engine(dbPath + working_db)
+conn = engine.connect()
+metadata = MetaData(engine, reflect=True)
 
 from app import views, models
