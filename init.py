@@ -16,7 +16,7 @@ app.register_blueprint(blueprint)
 
 toolbar = DebugToolbarExtension(app)
 
-dbPath = 'mysql+mysqlconnector://root@localhost/'
+dbPath = 'mysql+pymysql://root@localhost/'
 admin_db = 'information_schema'
 working_db = 'project_db'
 
