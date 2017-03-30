@@ -14,7 +14,7 @@ app.config.from_object('config')
 from app.util.filters import blueprint
 app.register_blueprint(blueprint)
 
-#toolbar = DebugToolbarExtension(app)
+toolbar = DebugToolbarExtension(app)
 
 dbPath = 'mysql+mysqlconnector://root@localhost/'
 admin_db = 'information_schema'

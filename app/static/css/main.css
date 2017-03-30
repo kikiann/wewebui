@@ -1,3 +1,7 @@
+pre {
+  white-space: pre-wrap;
+}
+
 ul {
   list-style: none;
 }
