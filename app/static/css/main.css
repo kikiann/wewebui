@@ -47,6 +47,15 @@ li > a:hover {
   color: red;
 }
 
+div > a {
+  text-decoration: none;
+}
+
+div > a:hover {
+  text-decoration: none;
+  color: red;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -84,7 +93,7 @@ header h1.logo:hover {
  * Centering the body content
  */
 .container {
-  width: 1200px;
+  width: auto;
   margin: 0 auto;
 }
 div.home {

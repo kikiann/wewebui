@@ -15,7 +15,10 @@
                   <li><div>
                     <strong>&#8618;</strong>
                     <input type="checkbox" value="" />
-                    [{{ entry.timestamp | get_time }}]: {{ entry.filepath }}
+                    [{{ entry.timestamp | get_time }}]:
+                    <a href="" onclick="window.open('{{ url_for('view_contents', filepath=entry.filepath) }}', '_blank');">
+                      {{ entry.filepath }}
+                    </a>
                   </div><li>
                 {% endfor %}
             </ul>
