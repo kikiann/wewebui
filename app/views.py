@@ -25,3 +25,17 @@ def tbl_selector(db):
         return render_template('changelog.html', database=db, all_tables=all_tables, all_entries=all_entries)
     else:
         return page_not_found()
+
+@app.route('/contents')
+def view_contents():
+    filepath = request.args.get('filepath')
+    if filepath:
+        with open(filepath) as f:
+            lines = f.readlines()
+        list_lines = []
+        for line in lines:
+            list_lines.append(line.replace("\n", ""))
+        content = '\n'.join(map(str, list_lines))
+        return render_template('contents.html', content=content)
+    else:
+        return page_not_found()

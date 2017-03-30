@@ -1,6 +1,6 @@
 ## How to run ?
 
-* Have Python 2 installed
+* Have Python installed
 * Have MySQL / MariaDB installed (comes bundled with XAMPP stack)
 * Install required python packages
 `pip install -r requirements.txt`
