@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
 
-  <pre>
-    {{ content }}
-  </pre>
+  <pre>{{ content }}</pre>
+
+  <div class="selection">
+    <button type="submit">ACCEPT</button>
+    <button type="submit">REJECT</button>
+  </div>
 
 {% endblock %}
