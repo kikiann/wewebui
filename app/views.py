@@ -2,6 +2,7 @@ from flask import render_template, request, flash, redirect, url_for
 from app import app, working_db
 from app.models import get_tables, get_entries
 import better_exceptions
+import os
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -39,3 +40,17 @@ def view_contents():
         return render_template('contents.html', content=content)
     else:
         return page_not_found()
+
+
+@app.route('/contents/accept')
+def accept():
+     f = open("attendedfile.txt", "w")
+     tempfile =
+for tempfile in tempfiles:
+    f.write(tempfile.read())
+
+@app.route('/contents/reject')
+def reject():
+     f = open("unattendedfile.txt", "w")
+for tempfile in tempfiles:
+    f.write(tempfile.read())
