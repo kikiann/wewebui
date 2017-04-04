@@ -2,7 +2,7 @@ from flask import render_template, request, flash, redirect, url_for
 from app import app, working_db
 from app.models import get_tables, get_entries
 import better_exceptions
-import os
+import logging, traceback
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -37,20 +37,38 @@ def view_contents():
         for line in lines:
             list_lines.append(line.replace("\n", ""))
         content = '\n'.join(map(str, list_lines))
-        return render_template('contents.html', content=content)
+        return render_template('contents.html', content=content, filepath=filepath)
     else:
         return page_not_found()
 
 
 @app.route('/contents/accept')
 def accept():
-     f = open("attendedfile.txt", "w")
-     tempfile =
-for tempfile in tempfiles:
-    f.write(tempfile.read())
+    filepath = request.args.get('filepath')
+    if filepath:
+        try:
+            with open("output\\attendedfile.txt", "a") as dst_f:
+                with open(filepath, "r") as src_f:
+                    dst_f.write(src_f.read())
+            return render_template('process.html', comment="Success.")
+        except Exception as e:
+            logging.error(traceback.format_exc())
+    else:
+        return render_template('process.html', comment="Failed. Check server console log for error details.")
+        return page_not_found()
+
 
 @app.route('/contents/reject')
 def reject():
-     f = open("unattendedfile.txt", "w")
-for tempfile in tempfiles:
-    f.write(tempfile.read())
+    filepath = request.args.get('filepath')
+    if filepath:
+        try:
+            with open("output\\unattendedfile.txt", "a") as dst_f:
+                with open(filepath, "r") as src_f:
+                    dst_f.write(src_f.read())
+            return render_template('process.html', comment="Success.")
+        except Exception as e:
+            logging.error(traceback.format_exc())
+            return render_template('process.html', comment="Failed. Check server console log for error details.")
+    else:
+        return page_not_found()

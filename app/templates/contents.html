@@ -4,9 +4,13 @@
   <pre>{{ content }}</pre>
 
   <div class="selection">
-    <button type="submit">ACCEPT</button><a href="accept()" id="btn"></a>
+    <a href="{{ url_for('accept', filepath=filepath) }}" id="btn">
+      <button type="submit">ACCEPT</button>
+    </a>
 
-    <button type="submit">REJECT</button><a href="reject()" id="btn"></a>
+    <a href="{{ url_for('reject', filepath=filepath) }}" id="btn">
+      <button type="submit">REJECT</button>
+    </a>
 
   </div>
 
