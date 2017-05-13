@@ -1,0 +1,9 @@
+
+diff_file_2017-05-10_03-18-10
+0+ <Directory "/var/www/code4you.com/public_html">
+1+         AuthType Basic
+2+         AuthName "Restricted Content"
+3+         AuthUserFile /var/www/code4you.com/public_html/.htpasswd
+4+         Require valid-user
+5+         </Directory>
+7- #adware is a malware
